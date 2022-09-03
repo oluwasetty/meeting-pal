@@ -13,13 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('article_tags', function (Blueprint $table) {
+        Schema::create('event_subscribers', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('article_id');
-            $table->string('label');
-            $table->text('url');
+            $table->unsignedBigInteger('event_id');
+            $table->string('first_name');
+            $table->string('last_name');
+            $table->string('email')->unique();
+            $table->string('phone')->nullable();
+            $table->foreign('event_id')->references('id')->on('events');
             $table->timestamps();
-            $table->foreign('article_id')->references('id')->on('articles');
             $table->softDeletes();
         });
     }
@@ -31,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('article_tags');
+        Schema::dropIfExists('event_subscribers');
     }
 };

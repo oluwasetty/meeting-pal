@@ -6,12 +6,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes; // for soft deletes
 
-class ArticleTag extends Model
+class EventSubscriber extends Model
 {
     use HasFactory;
     use SoftDeletes; //add this line
  
-    public $fillable = [ 'article_id', 'label', 'url' ];
- 
-    protected $dates = [ 'deleted_at' ];
+    public $fillable = [ 'event_id', 'first_name', 'last_name', 'email', 'phone'];
 }

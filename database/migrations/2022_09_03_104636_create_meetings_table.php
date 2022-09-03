@@ -13,12 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('viewed_articles', function (Blueprint $table) {
+        Schema::create('meetings', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('article_id');
-            $table->unsignedBigInteger('count');
+            $table->unsignedBigInteger('event_id');
+            $table->string('date');
+            $table->string('time');
+            $table->enum('status', ["pending", "upcoming", "ongoing", "missed", "finished"])->unique();
+            $table->foreign('event_id')->references('id')->on('events');
             $table->timestamps();
-            $table->foreign('article_id')->references('id')->on('articles');
             $table->softDeletes();
         });
     }
@@ -30,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('viewed_articles');
+        Schema::dropIfExists('meetings');
     }
 };

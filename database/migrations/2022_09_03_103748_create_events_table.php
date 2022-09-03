@@ -13,13 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('articles', function (Blueprint $table) {
+        Schema::create('events', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id');
             $table->string('title');
-            $table->text('short_description');
-            $table->longText('full_text');
-            $table->text('thumbnail_path');
-            $table->text('image_path');
+            $table->enum('platform', ["google-meet", "zoom"]);
+            $table->longText('description');
+            $table->string('link');
+            $table->enum('type', ["one", "group"]);
+            $table->boolean('recurring')->default(0);
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -32,6 +35,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('articles');
+        Schema::dropIfExists('events');
     }
 };
