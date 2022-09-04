@@ -32,7 +32,7 @@
                                         <div class="col-lg-12">
                                             <section class="description-section">
                                                 <hgroup>
-                                                    <h4 id="scheduler">{{$organizer}}</h4>
+                                                    <h4 id="scheduler">{{$user->first_name}} {{$user->last_name}}</h4>
                                                     <h2 id="event">{{$event->title}}</h2>
                                                     <div class="icon-text-div">
                                                         <img src="{{ asset('icons/clock.svg')}}" height="20" alt="clock-icon">
@@ -51,6 +51,7 @@
                                                     <div id="calendar"></div>
                                                     <input type="hidden" id="time_select" name="time_select"/>
                                                     <input type="hidden" id="date_select" name="date_select"/>
+                                                    <input type="hidden" value="{{$user->email}}" name="user_email"/>
                                                     <input type="hidden" value="{{$event->id}}" name="event_id"/>
                                                 </div>
                                             </section>

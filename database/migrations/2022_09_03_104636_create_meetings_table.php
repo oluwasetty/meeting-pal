@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('date');
             $table->string('time');
             $table->text('notes');
-            $table->enum('status', ["pending", "upcoming", "ongoing", "missed", "finished"])->unique();
+            $table->enum('status', ["pending", "upcoming", "ongoing", "missed", "finished"]);
             $table->foreign('event_id')->references('id')->on('events');
             $table->foreign('event_subscriber_id')->references('id')->on('event_subscribers');
             $table->timestamps();

@@ -3,7 +3,7 @@
     <head>
     <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-      <title>Calendify | Responsive Bootstrap 4 Admin Dashboard Template</title>
+      <title>MeetingPal | No 1 Meeting Scheduler</title>
       
       <!-- Favicon -->
       <link rel="shortcut icon" href="https://templates.iqonic.design/calendify/html/assets/images/favicon.ico" />

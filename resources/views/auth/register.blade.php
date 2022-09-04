@@ -19,7 +19,7 @@
                         <div class="card">
                             <div class="card-body text-center">
                                 <h2>Sign Up</h2>
-                                <p>Create your Gdrive account.</p>
+                                <p>Create your account.</p>
 
 
                                 <form method="POST" action="{{ route('register') }}">

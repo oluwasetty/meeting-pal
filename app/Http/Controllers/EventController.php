@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Event;
-use App\Models\EventSubscriber;
 use App\Models\Meeting;
 use App\Models\User;
 
@@ -38,10 +37,8 @@ class EventController extends Controller
     {
         $event = Event::where("link", $link)->first();
         $user = User::where('username', $username)->first();
-        $organizer = "$user->first_name $user->last_name";
         
-
-        return view("/join-event", compact("event", "organizer"));
+        return view("/join-event", compact("event", "user"));
     }
 
     /**
@@ -57,35 +54,6 @@ class EventController extends Controller
         $meetings = Meeting::where("event_id", $event_id)->get();
         
         return view("/meeting_list", compact("meetings"));
-    }
-
-    /**
-     * Join event.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\RedirectResponse
-     *
-     * @throws \Illuminate\Validation\ValidationException
-     */
-    public function joinEvent(Request $request)
-    {
-        $eventsub = EventSubscriber::create([
-            "first_name" => $request->first_name,
-            "last_name" => $request->last_name,
-            "email" => $request->email,
-            "event_id" => $request->event_id
-        ]);
-
-        $meeting = Meeting::create([
-            "event_id" => $request->event_id,
-            "event_subscriber_id" => $eventsub->id,
-            "date" => $request->date_select,
-            "time" => $request->time_select,
-            "notes" => $request->notes,
-            "status" => "pending"
-        ]);
-
-        return redirect()->back();
     }
 
 

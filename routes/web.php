@@ -29,6 +29,10 @@ Route::get('/add-event', function () {
 })->middleware(['auth'])->name('add-event');
 
 Route::post('/add-event', [EventController::class, 'create'])->middleware(['auth']);
-Route::post('/join-event', [EventController::class, 'joinEvent'])->middleware(['auth'])->name('join-event');
+Route::post('/join-event', "App\Http\Controllers\MeetingController@joinEvent")->middleware(['auth'])->name('join-event');
+
+
+// Route::get('cal', "App\Http\Controllers\GoogleCalendarController@index")->name('cal.index');
+Route::get('/oauth', "App\Http\Controllers\MeetingController@oauth")->name('oauthCallback');
 
 require __DIR__.'/auth.php';
