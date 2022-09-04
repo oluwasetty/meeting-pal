@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EventController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +17,18 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/dashboard', [EventController::class, 'index'])->name('dashboard');
+
+Route::get('/meeting-list/{event_id}', [EventController::class, 'getMeetings'])->name('meeting-list');
+
+Route::get('/{username}/{link}', [EventController::class, 'getEvent']);
+
+Route::get('/add-event', function () {
+    return view('add-event');
+})->middleware(['auth'])->name('add-event');
+
+Route::post('/add-event', [EventController::class, 'create'])->middleware(['auth']);
+Route::post('/join-event', [EventController::class, 'joinEvent'])->middleware(['auth'])->name('join-event');
+
+require __DIR__.'/auth.php';

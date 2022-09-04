@@ -12,4 +12,9 @@ class EventSubscriber extends Model
     use SoftDeletes; //add this line
  
     public $fillable = [ 'event_id', 'first_name', 'last_name', 'email', 'phone'];
+
+    public function meetings()
+    {
+        return $this->hasMany("App\Models\Meeting");
+    }
 }

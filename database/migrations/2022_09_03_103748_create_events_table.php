@@ -17,11 +17,14 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->string('title');
-            $table->enum('platform', ["google-meet", "zoom"]);
+            $table->enum('platform', ["Google Meet", "Zoom Us"]);
             $table->longText('description');
             $table->string('link');
-            $table->enum('type', ["one", "group"]);
-            $table->boolean('recurring')->default(0);
+            $table->string('duration');
+            $table->string('weekly_schedule');
+            $table->string('time_before')->nullable();
+            $table->string('time_after')->nullable();
+            $table->enum('type', ["Individual", "Group"]);
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
             $table->softDeletes();

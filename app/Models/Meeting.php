@@ -11,5 +11,15 @@ class Meeting extends Model
     use HasFactory;
     use SoftDeletes; //add this line
  
-    public $fillable = [ 'event_id', 'date', 'time', 'status'];
+    public $fillable = [ 'event_id', 'date', 'time', 'status', 'notes', 'event_subscriber_id'];
+
+    public function event()
+    {
+        return $this->belongsTo("App\Models\Event");
+    }
+
+    public function event_subscriber()
+    {
+        return $this->belongsTo("App\Models\EventSubscriber");
+    }
 }

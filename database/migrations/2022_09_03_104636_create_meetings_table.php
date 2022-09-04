@@ -16,10 +16,13 @@ return new class extends Migration
         Schema::create('meetings', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('event_id');
+            $table->unsignedBigInteger('event_subscriber_id');
             $table->string('date');
             $table->string('time');
+            $table->text('notes');
             $table->enum('status', ["pending", "upcoming", "ongoing", "missed", "finished"])->unique();
             $table->foreign('event_id')->references('id')->on('events');
+            $table->foreign('event_subscriber_id')->references('id')->on('event_subscribers');
             $table->timestamps();
             $table->softDeletes();
         });

@@ -18,7 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('event_id');
             $table->string('first_name');
             $table->string('last_name');
-            $table->string('email')->unique();
+            $table->string('email');
             $table->string('phone')->nullable();
             $table->foreign('event_id')->references('id')->on('events');
             $table->timestamps();
